@@ -16,9 +16,8 @@ export default function About({ darkMode }: AboutProps) {
           <p className={`text-lg leading-relaxed mb-6 ${
             darkMode ? 'text-gray-300' : 'text-gray-700'
           }`}>
-            I'm a passionate full-stack developer with over 5 years of experience creating digital solutions that blend functionality with beautiful design. I specialize in React, Node.js, and modern web technologies.
+            I'm a Junior IT Instructor at Zuitt Coding Bootcamp and a certified Full Stack Web Developer experienced in building responsive web apps using the MERN stack. Passionate about technology, I love turning real-world problems into scalable digital solutions.
           </p>
-          
           <p className={`text-lg leading-relaxed mb-6 ${
             darkMode ? 'text-gray-300' : 'text-gray-700'
           }`}>
