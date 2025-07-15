@@ -28,10 +28,16 @@ export default function Navigation({ activeSection, darkMode, toggleDarkMode }: 
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="text-xl font-bold bg-gradient-to-r from-gray-600 to-gray-400 bg-clip-text text-transparent">
+          <button
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              setIsMobileMenuOpen(false); // close mobile menu if open
+            }}
+            className="text-xl font-bold bg-gradient-to-r from-gray-600 to-gray-400 bg-clip-text text-transparent focus:outline-none"
+            aria-label="Scroll to top"
+          >
             MR
-          </div>
+          </button>
 
           {/* Desktop nav links */}
           <div className="hidden md:flex space-x-8 items-center">
