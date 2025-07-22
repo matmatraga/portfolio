@@ -45,25 +45,21 @@ export default function Navigation({
 
           {/* Desktop nav links */}
           <div className="hidden md:flex space-x-8 items-center">
-            {["about", "experience", "projects", "stack", "contact"].map(
-              (section) => (
-                <button
-                  key={section}
-                  onClick={() => handleNavClick(section)}
-                  className={`capitalize transition-all duration-200 hover:text-gray-400 ${
-                    activeSection === section
-                      ? "text-gray-400 font-medium"
-                      : darkMode
-                      ? "text-gray-300"
-                      : "text-gray-600"
-                  }`}
-                >
-                  {section === "stack"
-                    ? "Tech Stack"
-                    : section.replace("-", " ")}
-                </button>
-              )
-            )}
+            {["about", "experience", "projects", "contact"].map((section) => (
+              <button
+                key={section}
+                onClick={() => handleNavClick(section)}
+                className={`capitalize transition-all duration-200 hover:text-gray-400 ${
+                  activeSection === section
+                    ? "text-gray-400 font-medium"
+                    : darkMode
+                    ? "text-gray-300"
+                    : "text-gray-600"
+                }`}
+              >
+                {section}
+              </button>
+            ))}
             <button
               onClick={toggleDarkMode}
               className={`p-2 rounded-full transition-all duration-200 ${
@@ -101,25 +97,21 @@ export default function Navigation({
                 : "bg-white border-t border-gray-200"
             }`}
           >
-            {["about", "experience", "projects", "stack", "contact"].map(
-              (section) => (
-                <button
-                  key={section}
-                  onClick={() => handleNavClick(section)}
-                  className={`text-left capitalize transition-all duration-200 ${
-                    activeSection === section
-                      ? "text-gray-400 font-medium"
-                      : darkMode
-                      ? "text-gray-300"
-                      : "text-gray-700"
-                  }`}
-                >
-                  {section === "stack"
-                    ? "Tech Stack"
-                    : section.replace("-", " ")}
-                </button>
-              )
-            )}
+            {["about", "experience", "projects", "contact"].map((section) => (
+              <button
+                key={section}
+                onClick={() => handleNavClick(section)}
+                className={`text-left capitalize transition-all duration-200 ${
+                  activeSection === section
+                    ? "text-gray-400 font-medium"
+                    : darkMode
+                    ? "text-gray-300"
+                    : "text-gray-700"
+                }`}
+              >
+                {section}
+              </button>
+            ))}
             <button
               onClick={toggleDarkMode}
               className={`w-fit p-2 rounded-full transition-all duration-200 ${
