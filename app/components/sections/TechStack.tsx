@@ -1,39 +1,61 @@
-import { Code, Database, Globe } from "lucide-react";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiVuedotjs,
+  SiBootstrap,
+  SiNodedotjs,
+  SiExpress,
+  SiMysql,
+  SiMongodb,
+  SiPhp,
+  SiLaravel,
+  SiDotnet,
+  SiGit,
+  SiDocker,
+  SiAmazon,
+  SiFigma,
+  SiTrello,
+} from "react-icons/si";
+
+import { Code, Database, Globe, Settings } from "lucide-react";
+import { VscSymbolNamespace } from "react-icons/vsc"; // Optional: for ASP.NET
 
 interface TechStackProps {
   darkMode: boolean;
 }
 
 // Tech stack to Devicon mapping with corrected names
-const techIconMap: { [key: string]: string } = {
+const techIconMap: { [key: string]: JSX.Element } = {
   // Frontend
-  React: "devicon-react-original colored",
-  "Next.js": "devicon-nextjs-original-wordmark", // More reliable than original
-  TypeScript: "devicon-typescript-plain colored",
-  "Tailwind CSS": "devicon-tailwindcss-plain colored",
-  "Vue.js": "devicon-vuejs-plain colored",
-  Bootstrap: "devicon-bootstrap-plain colored",
+  React: <SiReact className="text-blue-500 w-6 h-6" />,
+  "Next.js": <SiNextdotjs className="text-black w-6 h-6" />,
+  TypeScript: <SiTypescript className="text-blue-600 w-6 h-6" />,
+  "Tailwind CSS": <SiTailwindcss className="text-cyan-500 w-6 h-6" />,
+  "Vue.js": <SiVuedotjs className="text-green-500 w-6 h-6" />,
+  Bootstrap: <SiBootstrap className="text-purple-600 w-6 h-6" />,
 
   // Backend
-  "Node.js": "devicon-nodejs-plain colored",
-  Express: "devicon-express-original-wordmark", // use wordmark for visibility
-  MySQL: "devicon-mysql-plain colored",
-  MongoDB: "devicon-mongodb-plain colored",
-  PHP: "devicon-php-plain colored",
-  Laravel: "devicon-laravel-plain colored",
-  "C#": "devicon-csharp-plain colored",
-  "ASP.NET": "⚙️", // No official icon for ASP.NET, fallback emoji or .NET
+  "Node.js": <SiNodedotjs className="text-green-600 w-6 h-6" />,
+  Express: <SiExpress className="text-gray-800 w-6 h-6" />,
+  MySQL: <SiMysql className="text-blue-600 w-6 h-6" />,
+  MongoDB: <SiMongodb className="text-green-600 w-6 h-6" />,
+  PHP: <SiPhp className="text-indigo-500 w-6 h-6" />,
+  Laravel: <SiLaravel className="text-red-600 w-6 h-6" />,
+  "C#": <SiDotnet className="text-purple-700 w-6 h-6" />,
+  "ASP.NET": <VscSymbolNamespace className="text-blue-800 w-6 h-6" />,
 
   // Tools
-  Git: "devicon-git-plain colored",
-  Docker: "devicon-docker-plain colored",
-  AWS: "devicon-amazonwebservices-original colored",
-  Vercel: "▲", // No devicon — using triangle symbol is good
-  Figma: "devicon-figma-plain colored",
-  Trello: "devicon-trello-plain colored",
+  Git: <SiGit className="text-orange-500 w-6 h-6" />,
+  Docker: <SiDocker className="text-blue-500 w-6 h-6" />,
+  AWS: <SiAmazon className="text-yellow-500 w-6 h-6" />,
+  Vercel: <span className="text-2xl">▲</span>, // emoji fallback
+  Figma: <SiFigma className="text-pink-500 w-6 h-6" />,
+  Trello: <SiTrello className="text-blue-600 w-6 h-6" />,
 
-  // Default fallback
-  default: "⚙️",
+  // Fallback
+  default: <Settings className="w-6 h-6" />,
 };
 
 export default function TechStack({ darkMode }: TechStackProps) {
@@ -71,23 +93,10 @@ export default function TechStack({ darkMode }: TechStackProps) {
     },
   ];
 
-  const getTechIcon = (tech: string) => {
-    const iconClass = techIconMap[tech] || techIconMap["default"];
-    // Check if it's an emoji/symbol fallback
-    if (!iconClass.includes("devicon-")) {
-      return iconClass; // Return emoji/symbol directly
-    }
-    return iconClass;
-  };
+  const getTechIcon = (tech: string) =>
+    techIconMap[tech] || techIconMap["default"];
 
-  const renderTechIcon = (tech: string) => {
-    const icon = getTechIcon(tech);
-    if (!icon.includes("devicon-")) {
-      // It's an emoji/symbol fallback
-      return <span className="text-2xl">{icon}</span>;
-    }
-    return <i className={`${icon} text-2xl`}></i>;
-  };
+  const renderTechIcon = (tech: string) => getTechIcon(tech);
 
   return (
     <>
