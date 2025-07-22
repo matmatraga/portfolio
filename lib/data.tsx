@@ -1,8 +1,18 @@
+import {
+  ShoppingCart,
+  Clipboard,
+  Satellite,
+  Cloud,
+  Database,
+} from "lucide-react";
+
+import React from "react";
+
 export interface Project {
   title: string;
   description: string;
   tech: string[];
-  image: string;
+  image: React.ReactNode;
   github?: string;
   demo?: string;
 }
@@ -23,22 +33,20 @@ export interface TechStack {
 export const projects: Project[] = [
   {
     title: "E-Commerce Platform",
-    description:
-      "A MERN stack-based e-commerce application developed during my bootcamp. It features an admin dashboard for managing products with full CRUD operations, and a user dashboard for browsing, adding items to cart, and checking out orders. The platform implements secure authentication and provides a responsive user experience.",
+    description: "A MERN stack e-commerce app with admin and user dashboards.",
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    image: "🛒",
+    image: <ShoppingCart size={40} className="mx-auto mb-3" />,
   },
   {
     title: "Learning Management System (Ongoing)",
     description:
-      "A collaborative full-stack MERN application developed by a team of three to simulate a real-world e-learning platform. It supports role-based access (Admin, Instructor, Student), course creation, enrollment, lesson tracking, and quiz functionalities. Built with React, Node.js, Express, MongoDB, and features JWT auth, Google OAuth, dashboards, and responsive UI using Tailwind. Deployed on Vercel and Render with MongoDB Atlas.",
+      "A MERN-based e-learning platform supporting roles and quizzes.",
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    image: "📋",
+    image: <Clipboard size={40} className="mx-auto mb-3" />,
   },
   {
     title: "Communication Channel App",
-    description:
-      "A solo-developed full-stack web application that unifies multi-channel communication in one platform. It allows users to send and receive emails (via Gmail), SMS messages, and voice calls using Twilio, as well as real-time chat using Socket.IO. Built with the MERN stack, the app supports file attachments, message logging, and a responsive UI. Designed with modular, scalable architecture and deployed using modern cloud services.",
+    description: "App integrating email, SMS, calls, and real-time chat.",
     tech: [
       "MongoDB",
       "Express.js",
@@ -47,7 +55,19 @@ export const projects: Project[] = [
       "Socket.io",
       "Twilio",
     ],
-    image: "📡",
+    image: <Satellite size={40} className="mx-auto mb-3" />,
+  },
+  {
+    title: "Google Drive App",
+    description: "Cloud file transfer app using Google Drive API.",
+    tech: ["Google API", "React.js", "Node.js"],
+    image: <Cloud size={40} className="mx-auto mb-3" />,
+  },
+  {
+    title: "In-memory Store (Redis-like)",
+    description: "Fast key-value store inspired by Redis.",
+    tech: ["Node.js", "Redis"],
+    image: <Database size={40} className="mx-auto mb-3" />,
   },
 ];
 

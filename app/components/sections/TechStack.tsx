@@ -20,7 +20,7 @@ import {
 } from "react-icons/si";
 
 import { Code, Database, Globe, Settings } from "lucide-react";
-import { VscSymbolNamespace } from "react-icons/vsc"; // Optional: for ASP.NET
+import { VscSymbolNamespace } from "react-icons/vsc";
 
 interface TechStackProps {
   darkMode: boolean;
