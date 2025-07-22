@@ -18,7 +18,6 @@ const techIconMap: { [key: string]: JSX.Element } = {
   // Frontend
   "React.js": <SiReact className="w-5 h-5 text-blue-500" />,
   React: <SiReact className="w-5 h-5 text-blue-500" />,
-  Bootstrap: <SiBootstrap className="w-5 h-5 text-purple-600" />,
 
   // Backend
   "Node.js": <SiNodedotjs className="w-5 h-5 text-green-600" />,
@@ -29,11 +28,8 @@ const techIconMap: { [key: string]: JSX.Element } = {
   MongoDB: <SiMongodb className="w-5 h-5 text-green-600" />,
 
   // Tools & Others
-  "Socket.io": <span className="w-5 h-5">🔌</span>,
-  JWT: <span className="w-5 h-5">🔐</span>,
-  Twilio: <span className="w-5 h-5">📞</span>,
-  "Google API": <span className="w-5 h-5">🌐</span>,
-  Multer: <SiNodedotjs className="w-5 h-5 text-green-600" />,
+  "Socket.io": <span className="w-5 h-5 inline-block">🔌</span>,
+  Twilio: <span className="w-5 h-5 inline-block">📞</span>,
 
   default: <Settings className="w-5 h-5 text-gray-500" />,
 };
