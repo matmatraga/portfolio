@@ -49,7 +49,6 @@ export default function Projects({ darkMode }: ProjectsProps) {
               } rounded-xl overflow-hidden flex flex-col`}
               style={{ minHeight: "320px" }}
             >
-              {/* Icon header block */}
               <div
                 className={`flex items-center justify-center h-24 ${
                   darkMode ? "bg-gray-900" : "bg-gray-100"
@@ -58,13 +57,12 @@ export default function Projects({ darkMode }: ProjectsProps) {
                 <div className="text-6xl">{project.image}</div>
               </div>
 
-              {/* Content block */}
               <div className="flex flex-col flex-grow p-4">
                 <h3
                   className={`font-semibold mb-2 text-center text-md ${
                     darkMode ? "text-white" : "text-gray-900"
                   }`}
-                  style={{ minHeight: "2.5rem" }} // to keep consistent height
+                  style={{ minHeight: "2.5rem" }}
                 >
                   {project.title}
                 </h3>
@@ -95,7 +93,6 @@ export default function Projects({ darkMode }: ProjectsProps) {
                   ))}
                 </div>
 
-                {/* Buttons */}
                 <div className="flex justify-center gap-2">
                   <button
                     className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs transition-all duration-200 hover:scale-105 ${

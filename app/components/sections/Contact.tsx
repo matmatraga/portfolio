@@ -21,7 +21,7 @@ export default function Contact({ darkMode }: ContactProps) {
         >
           <div className="text-center mb-8">
             <p
-              className={`text-lg ${
+              className={`text-md ${
                 darkMode ? "text-gray-300" : "text-gray-700"
               }`}
             >
@@ -30,9 +30,7 @@ export default function Contact({ darkMode }: ContactProps) {
             </p>
           </div>
 
-          {/* Horizontally aligned on md and up */}
           <div className="flex flex-col md:flex-row justify-center gap-4">
-            {/* Email */}
             <a
               href="mailto:matthewmondoy.raga@gmail.com"
               className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
@@ -54,7 +52,6 @@ export default function Contact({ darkMode }: ContactProps) {
               </div>
             </a>
 
-            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/matthewraga"
               target="_blank"
@@ -78,7 +75,6 @@ export default function Contact({ darkMode }: ContactProps) {
               </div>
             </a>
 
-            {/* GitHub */}
             <a
               href="https://github.com/matthewraga"
               target="_blank"

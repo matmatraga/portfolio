@@ -11,17 +11,18 @@ export default function Hero({ darkMode }: HeroProps) {
     <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8" id="home">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          {/* Optional: reduce or remove avatar if needed */}
           <div
-            className={`w-24 h-24 mx-auto mt-8 mb-6 rounded-full overflow-hidden ${
+            className={`w-48 h-48 mx-auto mt-8 mb-6 rounded-full overflow-hidden ${
               darkMode
                 ? "bg-gray-800 border-2 border-gray-700"
                 : "bg-gray-200 border-2 border-gray-300"
             }`}
           >
-            <div className="w-full h-full flex items-center justify-center text-3xl font-bold text-gray-400">
-              JS
-            </div>
+            <img
+              src="/avatar.jpg"
+              alt="Matthew Raga"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           <h1 className="text-3xl md:text-5xl font-bold mb-2">Matthew Raga</h1>
@@ -34,7 +35,6 @@ export default function Hero({ darkMode }: HeroProps) {
             Full Stack Developer
           </p>
 
-          {/* About Section (compact) */}
           <div
             className={`max-w-3xl mx-auto p-6 rounded-2xl text-left ${
               darkMode
@@ -42,14 +42,14 @@ export default function Hero({ darkMode }: HeroProps) {
                 : "bg-white/50 border border-gray-200 text-gray-700"
             } backdrop-blur-sm`}
           >
-            <p className="text-lg leading-relaxed mb-3">
+            <p className="text-md leading-relaxed mb-3">
               I'm a Junior IT Instructor at Zuitt Coding Bootcamp and a
               certified Full Stack Web Developer experienced in building
               responsive web apps using the MERN stack. Passionate about
               technology, I love turning real-world problems into scalable
               digital solutions.
             </p>
-            <p className="text-lg leading-relaxed">
+            <p className="text-md leading-relaxed">
               Outside of coding, I explore new technologies, contribute to
               open-source, and mentor aspiring devs.
             </p>
@@ -73,7 +73,6 @@ export default function Hero({ darkMode }: HeroProps) {
               </div>
             </div>
 
-            {/* Social Icons (still inside) */}
             <div className="flex justify-start space-x-4">
               <a
                 href="https://github.com/matthewraga"
