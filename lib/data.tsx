@@ -23,6 +23,8 @@ export const projects: Project[] = [
     description: "A MERN stack e-commerce app with admin and user dashboards.",
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
     image: <ShoppingCart size={40} className="mx-auto mb-3" />,
+    github: "https://github.com/matmatraga/ecommerce-app",
+    demo: "https://fullstack-eight-blue.vercel.app/",
   },
   {
     title: "Learning Management System (Ongoing)",
@@ -30,6 +32,8 @@ export const projects: Project[] = [
       "A MERN-based e-learning platform supporting roles and quizzes.",
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
     image: <Clipboard size={40} className="mx-auto mb-3" />,
+    github: "https://github.com/AndreiAmorado/LMSproj",
+    demo: "#",
   },
   {
     title: "Communication Channel App",
@@ -43,17 +47,24 @@ export const projects: Project[] = [
       "Twilio",
     ],
     image: <Satellite size={40} className="mx-auto mb-3" />,
+    github: "https://github.com/matmatraga/comm-channel-app",
+    demo: "https://comm-channel-app-glho.vercel.app/",
   },
   {
-    title: "Google Drive App",
-    description: "Cloud file transfer app using Google Drive API.",
+    title: "GDrive Transfer Ownership Script",
+    description:
+      "A Node.js script for transferring file ownership in Google Drive accounts.",
     tech: ["Google API", "Node.js"],
     image: <Cloud size={40} className="mx-auto mb-3" />,
+    github: "https://github.com/matmatraga/gdrive-transfer-ownership",
+    demo: "#",
   },
   {
     title: "In-memory Store (Redis-like)",
     description: "Fast key-value store inspired by Redis.",
     tech: ["Node.js", "Redis"],
     image: <Database size={40} className="mx-auto mb-3" />,
+    github: "#",
+    demo: "#",
   },
 ];
