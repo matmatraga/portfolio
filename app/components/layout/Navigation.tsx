@@ -45,7 +45,7 @@ export default function Navigation({
 
           {/* Desktop nav links */}
           <div className="hidden md:flex space-x-8 items-center">
-            {["about", "experience", "projects", "contact"].map((section) => (
+            {["home", "projects", "contact"].map((section) => (
               <button
                 key={section}
                 onClick={() => handleNavClick(section)}
@@ -97,7 +97,7 @@ export default function Navigation({
                 : "bg-white border-t border-gray-200"
             }`}
           >
-            {["about", "experience", "projects", "contact"].map((section) => (
+            {["home", "projects", "contact"].map((section) => (
               <button
                 key={section}
                 onClick={() => handleNavClick(section)}

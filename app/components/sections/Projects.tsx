@@ -1,14 +1,7 @@
 import { Github, ExternalLink, Settings } from "lucide-react";
 import { projects } from "@/lib/data";
 
-import {
-  SiReact,
-  SiBootstrap,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiSocketdotio,
-} from "react-icons/si";
+import { SiReact, SiNodedotjs, SiExpress, SiMongodb } from "react-icons/si";
 
 interface ProjectsProps {
   darkMode: boolean;

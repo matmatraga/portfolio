@@ -30,19 +30,19 @@ export default function Contact({ darkMode }: ContactProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Horizontally aligned on md and up */}
+          <div className="flex flex-col md:flex-row justify-center gap-4">
+            {/* Email */}
             <a
               href="mailto:matthewmondoy.raga@gmail.com"
-              className={`flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
+              className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
                 darkMode
                   ? "bg-gray-700 hover:bg-gray-600"
                   : "bg-gray-200 hover:bg-gray-300"
               }`}
             >
-              <div className="flex-shrink-0">
-                <Mail size={24} />
-              </div>
-              <div className="overflow-hidden">
+              <Mail size={24} />
+              <div className="overflow-hidden min-w-0">
                 <p className="font-medium">Email</p>
                 <p
                   className={`text-sm truncate ${
@@ -54,21 +54,22 @@ export default function Contact({ darkMode }: ContactProps) {
               </div>
             </a>
 
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/matthewraga"
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
+              className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
                 darkMode
                   ? "bg-gray-700 hover:bg-gray-600"
                   : "bg-gray-200 hover:bg-gray-300"
               }`}
             >
               <Linkedin size={24} />
-              <div>
+              <div className="overflow-hidden min-w-0">
                 <p className="font-medium">LinkedIn</p>
                 <p
-                  className={`text-sm ${
+                  className={`text-sm truncate ${
                     darkMode ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
@@ -77,21 +78,22 @@ export default function Contact({ darkMode }: ContactProps) {
               </div>
             </a>
 
+            {/* GitHub */}
             <a
               href="https://github.com/matthewraga"
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
+              className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
                 darkMode
                   ? "bg-gray-700 hover:bg-gray-600"
                   : "bg-gray-200 hover:bg-gray-300"
               }`}
             >
               <Github size={24} />
-              <div>
+              <div className="overflow-hidden min-w-0">
                 <p className="font-medium">GitHub</p>
                 <p
-                  className={`text-sm ${
+                  className={`text-sm truncate ${
                     darkMode ? "text-gray-400" : "text-gray-600"
                   }`}
                 >

@@ -47,7 +47,7 @@ export const projects: Project[] = [
   {
     title: "Google Drive App",
     description: "Cloud file transfer app using Google Drive API.",
-    tech: ["Google API", "React.js", "Node.js"],
+    tech: ["Google API", "Node.js"],
     image: <Cloud size={40} className="mx-auto mb-3" />,
   },
   {

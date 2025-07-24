@@ -4,17 +4,16 @@ import { useState, useEffect } from "react";
 import Navigation from "./layout/Navigation";
 import Footer from "./layout/Footer";
 import Hero from "./sections/Hero";
-import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(true);
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "experience", "projects", "stack", "contact"];
+      const sections = ["home", "projects", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -53,7 +52,6 @@ export default function Portfolio() {
         toggleDarkMode={toggleDarkMode}
       />
       <Hero darkMode={darkMode} />
-      <About darkMode={darkMode} />
       <Projects darkMode={darkMode} />
       <Contact darkMode={darkMode} />
       <Footer darkMode={darkMode} />
