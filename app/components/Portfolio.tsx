@@ -5,7 +5,6 @@ import Navigation from "./layout/Navigation";
 import Footer from "./layout/Footer";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
-import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
 
@@ -55,7 +54,6 @@ export default function Portfolio() {
       />
       <Hero darkMode={darkMode} />
       <About darkMode={darkMode} />
-      <Experience darkMode={darkMode} />
       <Projects darkMode={darkMode} />
       <Contact darkMode={darkMode} />
       <Footer darkMode={darkMode} />

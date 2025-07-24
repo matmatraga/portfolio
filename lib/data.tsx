@@ -17,19 +17,6 @@ export interface Project {
   demo?: string;
 }
 
-export interface Experience {
-  title: string;
-  company: string;
-  period: string;
-  description: string;
-}
-
-export interface TechStack {
-  category: string;
-  icon: React.ReactNode;
-  skills: string[];
-}
-
 export const projects: Project[] = [
   {
     title: "E-Commerce Platform",
@@ -68,22 +55,5 @@ export const projects: Project[] = [
     description: "Fast key-value store inspired by Redis.",
     tech: ["Node.js", "Redis"],
     image: <Database size={40} className="mx-auto mb-3" />,
-  },
-];
-
-export const experience: Experience[] = [
-  {
-    title: "Jr IT Instructor",
-    company: "Zuitt Inc.",
-    period: "August 2023 - Present",
-    description:
-      "Conduct full-stack development training both online and in-person. Create engaging, curriculum-aligned lessons, track student progress, and collaborate with peers to develop and refine learning materials while actively engaging in professional development.",
-  },
-  {
-    title: "Product Manager",
-    company: "Trends Academy",
-    period: "August-December 2024",
-    description:
-      "Manage IT learning product lifecycles, oversee vendor relations, and drive pricing and marketing strategies through data-driven research. Align internal teams and external partners to meet business goals and ensure successful product delivery.",
   },
 ];
