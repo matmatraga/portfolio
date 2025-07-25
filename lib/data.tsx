@@ -48,7 +48,7 @@ export const projects: Project[] = [
     ],
     image: <Satellite size={40} className="mx-auto mb-3" />,
     github: "https://github.com/matmatraga/comm-channel-app",
-    demo: "https://comm-channel-app-git-master-matthewmondoyragas-projects.vercel.app/",
+    demo: "https://comm-channel-app.vercel.app/login",
   },
   {
     title: "GDrive Transfer Ownership Script",
