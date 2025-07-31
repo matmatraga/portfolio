@@ -64,7 +64,7 @@ export const projects: Project[] = [
     description: "Fast key-value store inspired by Redis.",
     tech: ["Node.js", "Redis"],
     image: <Database size={40} className="mx-auto mb-3" />,
-    github: "#",
+    github: "https://github.com/matmatraga/redis-memstore",
     demo: "#",
   },
 ];
