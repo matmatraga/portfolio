@@ -93,7 +93,7 @@ export default function Contact({ darkMode }: ContactProps) {
                     darkMode ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
-                  github.com/matthewraga
+                  github.com/matmatraga
                 </p>
               </div>
             </a>
