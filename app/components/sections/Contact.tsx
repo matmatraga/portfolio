@@ -76,7 +76,7 @@ export default function Contact({ darkMode }: ContactProps) {
             </a>
 
             <a
-              href="https://github.com/matthewraga"
+              href="https://github.com/matmatraga"
               target="_blank"
               rel="noopener noreferrer"
               className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
