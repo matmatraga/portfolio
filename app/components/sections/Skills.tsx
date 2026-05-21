@@ -7,7 +7,10 @@ import { Briefcase, FolderGit2 } from "lucide-react";
 function SkillBadgeGrid({
   groups,
 }: {
-  groups: { category: string; skills: string[] }[];
+  groups: ReadonlyArray<{
+    readonly category: string;
+    readonly skills: readonly string[];
+  }>;
 }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
