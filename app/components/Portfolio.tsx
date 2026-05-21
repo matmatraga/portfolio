@@ -4,19 +4,25 @@ import { useState, useEffect } from "react";
 import Navigation from "./layout/Navigation";
 import Footer from "./layout/Footer";
 import Hero from "./sections/Hero";
+import Services from "./sections/Services";
+import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
+import Skills from "./sections/Skills";
+import About from "./sections/About";
 import Contact from "./sections/Contact";
+import { ThemeProvider } from "./providers/ThemeProvider";
+import { navSections } from "@/lib/constants";
 
 export default function Portfolio() {
-  const [darkMode, setDarkMode] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["home", "projects", "contact"];
-      const scrollPosition = window.scrollY + 100;
+    const sectionIds = navSections.map((s) => s.id);
 
-      for (const section of sections) {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 120;
+
+      for (const section of sectionIds) {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
@@ -30,31 +36,24 @@ export default function Portfolio() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
   return (
-    <div
-      className={`min-h-screen transition-all duration-300 ${
-        darkMode
-          ? "bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white"
-          : "bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900"
-      }`}
-    >
-      <Navigation
-        activeSection={activeSection}
-        darkMode={darkMode}
-        toggleDarkMode={toggleDarkMode}
-      />
-      <Hero darkMode={darkMode} />
-      <Projects darkMode={darkMode} />
-      <Contact darkMode={darkMode} />
-      <Footer darkMode={darkMode} />
-    </div>
+    <ThemeProvider>
+      <Navigation activeSection={activeSection} />
+      <main>
+        <Hero />
+        <Services />
+        <Experience />
+        <Projects />
+        <Skills />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </ThemeProvider>
   );
 }

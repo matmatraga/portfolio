@@ -1,104 +1,105 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+"use client";
 
-interface ContactProps {
-  darkMode: boolean;
-}
+import { useState } from "react";
+import { Github, Linkedin, Mail, Copy, Check } from "lucide-react";
+import { siteConfig } from "@/lib/constants";
+import SectionHeader from "../ui/SectionHeader";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 
-export default function Contact({ darkMode }: ContactProps) {
+export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(siteConfig.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${siteConfig.email}`;
+    }
+  };
+
+  const contactLinks = [
+    {
+      label: "Email",
+      value: siteConfig.email,
+      href: `mailto:${siteConfig.email}`,
+      icon: Mail,
+    },
+    {
+      label: "LinkedIn",
+      value: siteConfig.linkedinHandle,
+      href: siteConfig.linkedin,
+      icon: Linkedin,
+    },
+    {
+      label: "GitHub",
+      value: siteConfig.githubHandle,
+      href: siteConfig.github,
+      icon: Github,
+    },
+  ];
+
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Get In Touch
-        </h2>
+        <SectionHeader
+          eyebrow="Contact"
+          title="Let's build something"
+          subtitle="Contract, part-time, or project-based work—tell me about your stack, timeline, and goals."
+        />
 
-        <div
-          className={`p-8 rounded-2xl ${
-            darkMode
-              ? "bg-gray-800/50 border border-gray-700"
-              : "bg-white/50 border border-gray-200"
-          } backdrop-blur-sm`}
-        >
-          <div className="text-center mb-8">
-            <p
-              className={`text-md ${
-                darkMode ? "text-gray-300" : "text-gray-700"
-              }`}
-            >
-              I'm always open to discussing new opportunities, interesting
-              projects, or just having a chat about technology.
+        <Card className="p-6 md:p-10 !scale-100">
+          <div className="text-center space-y-2 mb-10">
+            <p className="text-[rgb(var(--muted))]">{siteConfig.responseTime}</p>
+            <p className="text-sm text-[rgb(var(--muted))]">
+              {siteConfig.availability}
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-center gap-4">
-            <a
-              href="mailto:matthewmondoy.raga@gmail.com"
-              className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
-                darkMode
-                  ? "bg-gray-700 hover:bg-gray-600"
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
+          <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-4 mb-10 px-2 sm:px-4">
+            <Button
+              className="bg-accent hover:bg-accent-muted text-accent-foreground gap-2.5 px-6 py-3 min-h-[48px] text-sm"
+              onClick={() => {
+                window.location.href = `mailto:${siteConfig.email}?subject=Project%20inquiry`;
+              }}
             >
-              <Mail size={24} />
-              <div className="overflow-hidden min-w-0">
-                <p className="font-medium">Email</p>
-                <p
-                  className={`text-sm truncate ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  matthewmondoy.raga@gmail.com
-                </p>
-              </div>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/matthewraga"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
-                darkMode
-                  ? "bg-gray-700 hover:bg-gray-600"
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
+              <Mail size={18} />
+              Email me
+            </Button>
+            <Button
+              variant="outline"
+              className="gap-2.5 px-6 py-3 min-h-[48px] text-sm border-surface-border dark:border-gray-600"
+              onClick={copyEmail}
             >
-              <Linkedin size={24} />
-              <div className="overflow-hidden min-w-0">
-                <p className="font-medium">LinkedIn</p>
-                <p
-                  className={`text-sm truncate ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  linkedin.com/in/matthewraga
-                </p>
-              </div>
-            </a>
-
-            <a
-              href="https://github.com/matmatraga"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full md:w-1/3 flex items-center gap-3 p-4 rounded-lg transition-all duration-200 hover:scale-105 ${
-                darkMode
-                  ? "bg-gray-700 hover:bg-gray-600"
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
-            >
-              <Github size={24} />
-              <div className="overflow-hidden min-w-0">
-                <p className="font-medium">GitHub</p>
-                <p
-                  className={`text-sm truncate ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  github.com/matmatraga
-                </p>
-              </div>
-            </a>
+              {copied ? <Check size={18} /> : <Copy size={18} />}
+              {copied ? "Copied" : "Copy email"}
+            </Button>
           </div>
-        </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+            {contactLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.label !== "Email" ? "_blank" : undefined}
+                rel={
+                  link.label !== "Email" ? "noopener noreferrer" : undefined
+                }
+                className="flex items-center gap-4 p-5 rounded-lg border border-surface-border hover:border-accent/40 hover:bg-surface-elevated transition-colors"
+              >
+                <link.icon size={22} className="text-accent shrink-0" />
+                <div className="min-w-0">
+                  <p className="font-medium text-sm">{link.label}</p>
+                  <p className="text-xs text-[rgb(var(--muted))] truncate">
+                    {link.value}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </Card>
       </div>
     </section>
   );

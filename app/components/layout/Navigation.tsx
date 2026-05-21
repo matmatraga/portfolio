@@ -2,129 +2,135 @@
 
 import { useState } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
+import { navSections } from "@/lib/constants";
 import { scrollToSection } from "@/lib/utils";
+import { useTheme } from "../providers/ThemeProvider";
+import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
 interface NavigationProps {
   activeSection: string;
-  darkMode: boolean;
-  toggleDarkMode: () => void;
 }
 
-export default function Navigation({
-  activeSection,
-  darkMode,
-  toggleDarkMode,
-}: NavigationProps) {
+export default function Navigation({ activeSection }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const handleNavClick = (section: string) => {
     scrollToSection(section);
-    setIsMobileMenuOpen(false); // close menu on click
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        darkMode
-          ? "bg-black/80 backdrop-blur-md border-b border-gray-800"
-          : "bg-white/80 backdrop-blur-md border-b border-gray-200"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <button
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              setIsMobileMenuOpen(false); // close mobile menu if open
-            }}
-            className="text-xl font-bold bg-gradient-to-r from-gray-600 to-gray-400 bg-clip-text text-transparent focus:outline-none"
-            aria-label="Scroll to top"
-          >
-            MR
-          </button>
+    <>
+      <a
+        href="#home"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded-md"
+      >
+        Skip to main content
+      </a>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex space-x-8 items-center">
-            {["home", "projects", "contact"].map((section) => (
+      <nav
+        className="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-md border-b border-surface-border"
+        aria-label="Main navigation"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-xl font-bold text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+              aria-label="Scroll to top"
+            >
+              MR
+            </button>
+
+            <div className="hidden lg:flex items-center gap-1">
+              {navSections.map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => handleNavClick(id)}
+                  aria-current={activeSection === id ? "page" : undefined}
+                  className={cn(
+                    "px-3 py-2 text-sm rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                    activeSection === id
+                      ? "text-accent font-medium bg-accent/10"
+                      : "text-[rgb(var(--muted))] hover:text-[rgb(var(--foreground))]"
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <div className="hidden md:flex items-center gap-2">
               <button
-                key={section}
-                onClick={() => handleNavClick(section)}
-                className={`capitalize transition-all duration-200 hover:text-gray-400 ${
-                  activeSection === section
-                    ? "text-gray-400 font-medium"
-                    : darkMode
-                    ? "text-gray-300"
-                    : "text-gray-600"
-                }`}
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                className="p-2 rounded-full border border-surface-border hover:bg-surface-elevated transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
-                {section}
+                {theme === "dark" ? (
+                  <Sun size={18} className="text-accent" />
+                ) : (
+                  <Moon size={18} />
+                )}
               </button>
-            ))}
-            <button
-              onClick={toggleDarkMode}
-              className={`p-2 rounded-full transition-all duration-200 ${
-                darkMode
-                  ? "bg-gray-800 hover:bg-gray-700 text-yellow-400"
-                  : "bg-gray-200 hover:bg-gray-300 text-gray-700"
-              }`}
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+              <Button
+                className="bg-accent hover:bg-accent-muted text-accent-foreground text-sm h-9 px-4"
+                onClick={() => handleNavClick("contact")}
+              >
+                Get in touch
+              </Button>
+            </div>
+
+            <div className="md:hidden flex items-center gap-2">
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="p-2 rounded-md border border-surface-border"
+              >
+                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-md border border-surface-border"
+                aria-expanded={isMobileMenuOpen}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
           </div>
 
-          {/* Mobile menu toggle */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 rounded-md transition-all duration-200 ${
-                darkMode
-                  ? "text-gray-300 hover:bg-gray-700"
-                  : "text-gray-700 hover:bg-gray-200"
-              }`}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {isMobileMenuOpen && (
+            <div className="lg:hidden pb-4 border-t border-surface-border pt-3 flex flex-col gap-1">
+              {navSections.map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => handleNavClick(id)}
+                  aria-current={activeSection === id ? "page" : undefined}
+                  className={cn(
+                    "text-left px-3 py-2 rounded-md text-sm",
+                    activeSection === id
+                      ? "text-accent font-medium bg-accent/10"
+                      : "text-[rgb(var(--muted))]"
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+              <Button
+                className="mt-2 bg-accent hover:bg-accent-muted text-accent-foreground w-full"
+                onClick={() => handleNavClick("contact")}
+              >
+                Get in touch
+              </Button>
+            </div>
+          )}
         </div>
-
-        {/* Mobile dropdown menu */}
-        {isMobileMenuOpen && (
-          <div
-            className={`md:hidden flex flex-col space-y-4 px-4 pt-6 pb-6 rounded-b-lg transition-all duration-300 ${
-              darkMode
-                ? "bg-black border-t border-gray-800"
-                : "bg-white border-t border-gray-200"
-            }`}
-          >
-            {["home", "projects", "contact"].map((section) => (
-              <button
-                key={section}
-                onClick={() => handleNavClick(section)}
-                className={`text-left capitalize transition-all duration-200 ${
-                  activeSection === section
-                    ? "text-gray-400 font-medium"
-                    : darkMode
-                    ? "text-gray-300"
-                    : "text-gray-700"
-                }`}
-              >
-                {section}
-              </button>
-            ))}
-            <button
-              onClick={toggleDarkMode}
-              className={`w-fit p-2 rounded-full transition-all duration-200 ${
-                darkMode
-                  ? "bg-gray-800 hover:bg-gray-700 text-yellow-400"
-                  : "bg-gray-200 hover:bg-gray-300 text-gray-700"
-              }`}
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          </div>
-        )}
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }

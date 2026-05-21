@@ -1,134 +1,185 @@
 import { Github, ExternalLink, Settings } from "lucide-react";
 import { projects } from "@/lib/data";
-
+import SectionHeader from "../ui/SectionHeader";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 import { SiReact, SiNodedotjs, SiExpress, SiMongodb } from "react-icons/si";
 
-interface ProjectsProps {
-  darkMode: boolean;
-}
-
-const techIconMap: { [key: string]: JSX.Element } = {
-  // Frontend
-  "React.js": <SiReact className="w-5 h-5 text-blue-500" />,
-  React: <SiReact className="w-5 h-5 text-blue-500" />,
-
-  // Backend
-  "Node.js": <SiNodedotjs className="w-5 h-5 text-green-600" />,
-  "Express.js": <SiExpress className="w-5 h-5 text-gray-800" />,
-  Express: <SiExpress className="w-5 h-5 text-gray-800" />,
-
-  // Databases
-  MongoDB: <SiMongodb className="w-5 h-5 text-green-600" />,
-
-  // Tools & Others
-  "Socket.io": <span className="w-5 h-5 inline-block">🔌</span>,
-  Twilio: <span className="w-5 h-5 inline-block">📞</span>,
-
-  default: <Settings className="w-5 h-5 text-gray-500" />,
+const techIconMap: Record<string, JSX.Element> = {
+  "React.js": <SiReact className="w-4 h-4 text-blue-500" />,
+  React: <SiReact className="w-4 h-4 text-blue-500" />,
+  "Node.js": <SiNodedotjs className="w-4 h-4 text-green-600" />,
+  "Express.js": <SiExpress className="w-4 h-4 text-gray-500 dark:text-gray-300" />,
+  Express: <SiExpress className="w-4 h-4 text-gray-500 dark:text-gray-300" />,
+  MongoDB: <SiMongodb className="w-4 h-4 text-green-600" />,
+  default: <Settings className="w-4 h-4 text-gray-500" />,
 };
 
-export default function Projects({ darkMode }: ProjectsProps) {
-  const getTechIcon = (tech: string) =>
-    techIconMap[tech] || techIconMap.default;
+const statusLabels = {
+  shipped: "Live demo",
+  ongoing: "In progress",
+  oss: "Open source",
+} as const;
+
+function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: (typeof projects)[0];
+  featured?: boolean;
+}) {
+  const hasDemo = project.demo && project.demo !== "#";
+  const status = project.status ? statusLabels[project.status] : null;
 
   return (
-    <section id="projects" className="py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-          Featured Projects
-        </h2>
+    <article
+      className={cn(
+        "group flex flex-col rounded-xl border border-surface-border bg-surface overflow-hidden",
+        "transition-shadow hover:shadow-card dark:hover:shadow-card-dark hover:border-accent/30",
+        featured && "md:col-span-1"
+      )}
+    >
+      <div
+        className={cn(
+          "flex items-center justify-center bg-surface-elevated border-b border-surface-border",
+          featured ? "h-32" : "h-24"
+        )}
+      >
+        <div className={cn("text-accent", featured ? "scale-110" : "")}>
+          {project.image}
+        </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <div
-              key={i}
-              className={`group cursor-pointer transition-all duration-300 hover:scale-105 relative ${
-                darkMode
-                  ? "bg-gray-800 border border-gray-700"
-                  : "bg-white border border-gray-200"
-              } rounded-xl overflow-hidden flex flex-col`}
-              style={{ minHeight: "320px" }}
-            >
-              <div
-                className={`flex items-center justify-center h-24 ${
-                  darkMode ? "bg-gray-900" : "bg-gray-100"
-                }`}
+      <div className="flex flex-col flex-grow p-5 pb-6">
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          {status && (
+            <Badge className="bg-accent/10 text-accent text-xs py-0">
+              {status}
+            </Badge>
+          )}
+        </div>
+
+        <h3 className="font-semibold text-lg mb-1">{project.title}</h3>
+
+        {project.impact && (
+          <p className="text-sm text-accent/90 mb-2">{project.impact}</p>
+        )}
+
+        <p className="text-sm text-[rgb(var(--muted))] flex-grow mb-4">
+          {project.description}
+        </p>
+
+        {project.highlights && featured && (
+          <ul className="space-y-1 mb-4">
+            {project.highlights.slice(0, 2).map((h) => (
+              <li
+                key={h}
+                className="text-xs text-[rgb(var(--muted))] flex gap-1.5"
               >
-                <div className="text-6xl">{project.image}</div>
-              </div>
+                <span className="text-accent">•</span>
+                {h}
+              </li>
+            ))}
+          </ul>
+        )}
 
-              <div className="flex flex-col flex-grow p-4">
-                <h3
-                  className={`font-semibold mb-2 text-center text-md ${
-                    darkMode ? "text-white" : "text-gray-900"
-                  }`}
-                  style={{ minHeight: "2.5rem" }}
-                >
-                  {project.title}
-                </h3>
-
-                <p
-                  className={`flex-grow text-sm mb-4 text-center ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
-                  style={{ minHeight: "4.5rem" }}
-                >
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 justify-center mb-4">
-                  {project.tech.map((tech, idx) => (
-                    <div
-                      key={idx}
-                      className={`flex items-center gap-1.5 px-2 py-1 text-xs rounded-full transition-all duration-200 hover:scale-105 ${
-                        darkMode
-                          ? "bg-gray-700 text-gray-300"
-                          : "bg-gray-200 text-gray-700"
-                      }`}
-                      title={tech}
-                    >
-                      {getTechIcon(tech)}
-                      <span className="font-medium">{tech}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex justify-center gap-2">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs transition-all duration-200 hover:scale-105 ${
-                        darkMode
-                          ? "bg-gray-700 hover:bg-gray-600 text-white"
-                          : "bg-gray-200 hover:bg-gray-300 text-gray-900"
-                      }`}
-                    >
-                      <Github size={14} />
-                      Code
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs transition-all duration-200 hover:scale-105 ${
-                        darkMode
-                          ? "bg-gray-600 hover:bg-gray-500 text-white"
-                          : "bg-gray-300 hover:bg-gray-400 text-gray-900"
-                      }`}
-                    >
-                      <ExternalLink size={14} />
-                      Demo
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tech.map((tech) => (
+            <span
+              key={tech}
+              className="inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded-full bg-surface-elevated border border-surface-border"
+              title={tech}
+            >
+              {techIconMap[tech] || techIconMap.default}
+              <span className="font-medium">{tech}</span>
+            </span>
           ))}
         </div>
+
+        <div className="flex flex-wrap gap-3 mt-auto pt-4">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex"
+            >
+              <Button
+                variant="outline"
+                className="gap-2 px-4 py-2.5 min-h-[40px] text-sm border-surface-border dark:border-gray-600"
+              >
+                <Github size={16} />
+                Code
+              </Button>
+            </a>
+          )}
+          {hasDemo ? (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex"
+            >
+              <Button className="gap-2 px-4 py-2.5 min-h-[40px] text-sm bg-accent hover:bg-accent-muted text-accent-foreground">
+                <ExternalLink size={16} />
+                Demo
+              </Button>
+            </a>
+          ) : project.github ? (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex"
+              title="View README on GitHub"
+            >
+              <Button
+                variant="ghost"
+                className="gap-2 px-4 py-2.5 min-h-[40px] text-sm text-[rgb(var(--muted))]"
+              >
+                <ExternalLink size={16} />
+                README
+              </Button>
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function Projects() {
+  const featured = projects.filter((p) => p.featured);
+  const other = projects.filter((p) => !p.featured);
+
+  return (
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeader
+          eyebrow="Work"
+          title="Selected projects"
+          subtitle="Examples you can click through—demos where available, code always."
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {featured.map((project) => (
+            <ProjectCard key={project.title} project={project} featured />
+          ))}
+        </div>
+
+        {other.length > 0 && (
+          <>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-[rgb(var(--muted))] mb-4">
+              More work
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {other.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

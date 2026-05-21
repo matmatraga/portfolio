@@ -11,10 +11,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
-          variant === "default" && "bg-gray-800 text-white hover:bg-gray-700",
-          variant === "outline" && "border border-gray-300 hover:bg-gray-100",
-          variant === "ghost" && "hover:bg-gray-100 dark:hover:bg-gray-700",
+          "inline-flex items-center justify-center rounded-md px-4 py-2.5 text-sm font-medium transition-colors",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+          "disabled:opacity-50 disabled:pointer-events-none",
+          variant === "default" && "bg-gray-800 text-white hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-gray-300",
+          variant === "outline" &&
+            "border border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800",
+          variant === "ghost" && "hover:bg-surface-elevated",
           variant === "solid" && "bg-gray-200 text-gray-900 hover:bg-gray-300",
           className
         )}

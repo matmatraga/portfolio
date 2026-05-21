@@ -1,14 +1,3 @@
-export interface ThemeContextType {
-  darkMode: boolean;
-  toggleDarkMode: () => void;
-}
+// Shared types live in lib/data.tsx and lib/constants.ts
 
-export interface NavigationProps {
-  activeSection: string;
-  darkMode: boolean;
-  toggleDarkMode: () => void;
-}
-
-export interface SectionProps {
-  darkMode: boolean;
-}
+export {};
