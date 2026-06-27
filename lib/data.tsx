@@ -3,7 +3,6 @@ import {
   Clipboard,
   Satellite,
   Cloud,
-  Database,
   Code2,
   Plug,
   Radio,
@@ -61,7 +60,7 @@ export const projectSkillsCompact = [
   "TypeScript",
   "Tailwind CSS",
   "Socket.io",
-  "Twilio",
+  "WebRTC",
   "Git",
   "Vercel",
 ] as const;
@@ -74,9 +73,10 @@ export const experience: ExperienceItem[] = [
     description:
       "Enterprise web applications with Java on the server, Vue and JSF/PrimeFaces on the UI, and MySQL-backed data layers.",
     highlights: [
-      "Build and maintain features in a Java + Hibernate production codebase",
-      "Develop UI with Vue alongside JSF and PrimeFaces components",
-      "Work with MySQL and platform integrations including Janus",
+      "Ship and maintain features in a Java + Hibernate production codebase",
+      "Develop UI with Vue alongside legacy JSF and PrimeFaces components",
+      "Work with MySQL-backed data layers and platform integrations including Janus",
+      "Collaborate in code reviews and production release workflows",
     ],
     current: true,
   },
@@ -87,9 +87,9 @@ export const experience: ExperienceItem[] = [
     description:
       "Taught full-stack web development and mentored bootcamp students through hands-on MERN projects.",
     highlights: [
-      "Explained APIs, auth, and MERN architecture in live sessions",
-      "Guided students through projects, debugging, and code reviews",
-      "Strengthened communication skills useful for client work",
+      "Taught APIs, auth, and MERN architecture in live cohort sessions",
+      "Guided students through project builds, debugging, and code reviews",
+      "Delivered clear written and verbal explanations for non-technical learners",
     ],
   },
 ];
@@ -112,7 +112,7 @@ export const services: ServiceItem[] = [
       "REST APIs and third-party integrations tailored to your product.",
     deliverables: [
       "Webhook handlers and service wiring",
-      "Google, Twilio, and similar SDK integrations",
+      "Google and similar third-party SDK integrations",
       "Documentation for handoff to your team",
     ],
     icon: <Plug className="w-6 h-6" />,
@@ -120,10 +120,10 @@ export const services: ServiceItem[] = [
   {
     title: "Real-time features",
     description:
-      "Live updates, chat, and event-driven UX with Socket.io or similar.",
+      "Live chat, WebRTC video/voice calls, and event-driven UX with Socket.io.",
     deliverables: [
       "Socket.io rooms and messaging patterns",
-      "Client state synced with server events",
+      "WebRTC peer connections for in-app calls",
       "Production-minded error handling",
     ],
     icon: <Radio className="w-6 h-6" />,
@@ -143,31 +143,14 @@ export const services: ServiceItem[] = [
 
 export const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description:
-      "Full MERN e-commerce app with separate admin and customer experiences.",
-    impact: "Storefront, cart, and admin dashboard with auth",
-    highlights: [
-      "Built product catalog, cart, and role-based admin",
-      "JWT-secured API and React client",
-      "Deployed live demo for review",
-    ],
-    tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    image: <ShoppingCart size={40} className="mx-auto" />,
-    github: "https://github.com/matmatraga/ecommerce-app",
-    demo: "https://fullstack-eight-blue.vercel.app/",
-    status: "shipped",
-    featured: true,
-  },
-  {
     title: "Communication Channel App",
     description:
-      "Unified comms hub integrating email, SMS, calls, and real-time chat.",
-    impact: "Multi-channel customer communication in one app",
+      "Full-stack messenger with real-time chat, WebRTC audio/video calls, file attachments, and an email demo.",
+    impact: "In-app chat, calls, and multi-channel comms in one app",
     highlights: [
-      "Socket.io for live chat",
-      "Twilio for SMS and voice flows",
-      "Express API with React dashboard",
+      "Socket.io for live chat, presence, and call signaling",
+      "Custom WebRTC (simple-peer) for in-browser video and voice",
+      "JWT auth on REST and WebSocket; JWT-protected file attachments",
     ],
     tech: [
       "MongoDB",
@@ -175,7 +158,7 @@ export const projects: Project[] = [
       "React.js",
       "Node.js",
       "Socket.io",
-      "Twilio",
+      "WebRTC",
     ],
     image: <Satellite size={40} className="mx-auto" />,
     github: "https://github.com/matmatraga/comm-channel-app",
@@ -184,19 +167,20 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Learning Management System",
+    title: "E-Commerce Platform (ASTER)",
     description:
-      "MERN e-learning platform with roles, courses, and quizzes.",
-    impact: "Team project — LMS core flows",
+      "Full MERN e-commerce app with storefront, admin dashboard, and Philippine payment options.",
+    impact: "Storefront, cart, PayMongo checkout, and admin RBAC",
     highlights: [
-      "Role-based access for instructors and students",
-      "Course and quiz modules",
-      "Collaborative MERN codebase",
+      "PayMongo hosted checkout with HMAC-verified webhooks",
+      "Cross-origin httpOnly JWT cookies (Vercel + Render)",
+      "Admin product CRUD, orders, and role-based access",
     ],
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    image: <Clipboard size={40} className="mx-auto" />,
-    github: "https://github.com/AndreiAmorado/LMSproj",
-    status: "ongoing",
+    image: <ShoppingCart size={40} className="mx-auto" />,
+    github: "https://github.com/matmatraga/ecommerce-app",
+    demo: "https://aster-olive.vercel.app/login",
+    status: "shipped",
     featured: true,
   },
   {
@@ -214,16 +198,18 @@ export const projects: Project[] = [
     status: "oss",
   },
   {
-    title: "In-memory Store (Redis-like)",
-    description: "Lightweight in-memory key-value store inspired by Redis.",
-    impact: "Exploration of data-structure storage patterns",
+    title: "Learning Management System",
+    description:
+      "Collaborative MERN e-learning platform with roles, courses, and quizzes.",
+    impact: "Team project — LMS core flows (in progress)",
     highlights: [
-      "Custom store semantics in Node.js",
-      "Useful for learning caching concepts",
+      "Role-based access for instructors and students",
+      "Course and quiz modules",
+      "Shared MERN codebase with cohort teammates",
     ],
-    tech: ["Node.js"],
-    image: <Database size={40} className="mx-auto" />,
-    github: "https://github.com/matmatraga/redis-memstore",
-    status: "oss",
+    tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    image: <Clipboard size={40} className="mx-auto" />,
+    github: "https://github.com/AndreiAmorado/LMSproj",
+    status: "ongoing",
   },
 ];

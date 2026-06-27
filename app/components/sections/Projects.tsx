@@ -162,7 +162,7 @@ export default function Projects() {
           subtitle="Examples you can click through—demos where available, code always."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {featured.map((project) => (
             <ProjectCard key={project.title} project={project} featured />
           ))}
@@ -173,7 +173,7 @@ export default function Projects() {
             <h3 className="text-sm font-semibold uppercase tracking-wide text-[rgb(var(--muted))] mb-4">
               More work
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {other.map((project) => (
                 <ProjectCard key={project.title} project={project} />
               ))}
